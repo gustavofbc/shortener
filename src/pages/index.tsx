@@ -1,5 +1,7 @@
 import { Directus } from "@directus/sdk";
+import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
@@ -10,7 +12,11 @@ export default function HomePage() {
         width={200}
         alt="Criptomaníacos logo"
       />
-      <h1 className="font-Sora text-gray text-2xl py-4">Encurtador de URL's interno.</h1>
+      <h1 className="font-Sora text-gray text-2xl py-4">Encurtador de URL interno.</h1>
+      <Link
+        href={'https://floky.cmania.co/'} legacyBehavior>
+        <a className="font-Sora text-purple text-xl hover:text-gray  hover:transition-all">Directus</a>
+      </Link>
     </div>
   );
 }
