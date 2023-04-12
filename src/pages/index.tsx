@@ -1,9 +1,9 @@
 import { Directus } from "@directus/sdk";
-import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function HomePage() {
+  const database = process.env.DIRECTUS_URL ? process.env.DIRECTUS_URL : 'https://';
   return (
     <div className="bg-black min-h-screen flex flex-col justify-center items-center px-4 py-16 sm:flex-col">
       <Image
@@ -14,7 +14,7 @@ export default function HomePage() {
       />
       <h1 className="font-Sora text-gray text-2xl py-4">Encurtador de URL interno.</h1>
       <Link
-        href={'https://floky.cmania.co/'} legacyBehavior>
+        href={database} legacyBehavior>
         <a className="font-Sora text-purple text-xl hover:text-gray  hover:transition-all">Directus</a>
       </Link>
     </div>
