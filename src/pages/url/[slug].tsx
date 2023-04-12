@@ -23,16 +23,17 @@ export default function redirectPage(props: slugProps) {
                 <title>redirect page</title>
                 {props.data && props.data.url && (
                     <meta httpEquiv="refresh" content={`0; URL='${props.data.url}'`} />
-                )
-                }
-                <h1>Página não encontrada</h1>
+                )}
+                <div className="bg-black min-h-screen flex flex-col justify-center items-center px-4 py-16 sm:flex-col">
+                    <h1 className="font-Sora text-gray text-2xl py-4">Página não encontrada...</h1>
+                </div>
             </Head>
         </div>
     );
 }
 
 export async function getStaticPaths() {
-    const { data } = await directusPublic.items("urls").readByQuery({
+    const { data } = await directusPublic.items(process.env.DIRECTUS_URL!).readByQuery({
         filter: {
             url: {
                 _neq: 'zzzzz'
@@ -40,7 +41,6 @@ export async function getStaticPaths() {
         },
         limit: 100,
     }) as LinksProps;
-    console.log('passou:');
 
     if (!data) {
         return {
@@ -52,14 +52,12 @@ export async function getStaticPaths() {
         params: { slug: item.id },
     }));
 
-    console.log('olha aqui: ' + paths);
-
     return { paths, fallback: true };
 
 }
 
 export async function getStaticProps(context: any) {
-    const data = await directusPublic.items('urls').readOne(context.params.slug);
+    const data = await directusPublic.items(process.env.DIRECTUS_URL!).readOne(context.params.slug);
     if (!data) {
         return {
             notFound: true,
@@ -73,4 +71,3 @@ export async function getStaticProps(context: any) {
     };
 
 }
-

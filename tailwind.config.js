@@ -9,7 +9,15 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    colors: {
+      black: "#0F1211",
+      gray: "#e5e7eb",
+    },
+    extend: {
+      fontFamily: {
+        Sora: ["Sora", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
