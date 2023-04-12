@@ -33,7 +33,7 @@ export default function redirectPage(props: slugProps) {
 }
 
 export async function getStaticPaths() {
-    const { data } = await directusPublic.items(process.env.DIRECTUS_URL!).readByQuery({
+    const { data } = await directusPublic.items(process.env.DIRECTUS_COLLECTION!).readByQuery({
         filter: {
             url: {
                 _neq: 'zzzzz'
@@ -57,7 +57,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: any) {
-    const data = await directusPublic.items(process.env.DIRECTUS_URL!).readOne(context.params.slug);
+    const data = await directusPublic.items(process.env.DIRECTUS_COLLECTION!).readOne(context.params.slug);
     if (!data) {
         return {
             notFound: true,
